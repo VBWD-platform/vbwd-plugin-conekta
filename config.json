@@ -1,0 +1,16 @@
+{
+  "sandbox": { "type": "boolean", "default": true, "description": "Use Conekta sandbox" },
+  "test_public_key": { "type": "string", "default": "", "description": "Conekta test public key" },
+  "test_private_key": { "type": "string", "default": "", "description": "Conekta test private key" },
+  "test_api_url": { "type": "string", "default": "https://api.conekta.io", "description": "API base URL" },
+  "live_public_key": { "type": "string", "default": "", "description": "Conekta live public key" },
+  "live_private_key": { "type": "string", "default": "", "description": "Conekta live private key" },
+  "live_api_url": { "type": "string", "default": "https://api.conekta.io", "description": "API base URL" },
+  "api_version": { "type": "string", "default": "2.2.0", "description": "Pinned Conekta API version" },
+  "enabled_methods": { "type": "array", "default": ["card", "oxxo_cash", "spei"], "description": "Payment methods" },
+  "msi_enabled": { "type": "boolean", "default": true, "description": "Enable meses sin intereses (MSI)" },
+  "msi_plans": { "type": "array", "default": [3, 6, 9, 12], "description": "MSI installment counts offered" },
+  "oxxo_expiry_days": { "type": "integer", "default": 3, "description": "OXXO voucher expiry" },
+  "spei_expiry_days": { "type": "integer", "default": 1, "description": "SPEI CLABE expiry" },
+  "currency": { "type": "string", "default": "MXN", "description": "Only MXN is supported" }
+}

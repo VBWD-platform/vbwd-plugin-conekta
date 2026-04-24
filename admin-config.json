@@ -1,0 +1,36 @@
+{
+  "tabs": [
+    { "id": "mode", "label": "Mode", "fields": [{ "key": "sandbox", "label": "Sandbox mode", "component": "checkbox" }] },
+    {
+      "id": "test-credentials",
+      "label": "Sandbox credentials",
+      "fields": [
+        { "key": "test_public_key", "label": "Public key", "component": "input", "inputType": "text" },
+        { "key": "test_private_key", "label": "Private key", "component": "input", "inputType": "password" }
+      ]
+    },
+    {
+      "id": "live-credentials",
+      "label": "Live credentials",
+      "fields": [
+        { "key": "live_public_key", "label": "Public key", "component": "input", "inputType": "text" },
+        { "key": "live_private_key", "label": "Private key", "component": "input", "inputType": "password" }
+      ]
+    },
+    {
+      "id": "msi",
+      "label": "Installments (MSI)",
+      "fields": [
+        { "key": "msi_enabled", "label": "Enable MSI", "component": "checkbox" }
+      ]
+    },
+    {
+      "id": "expiry",
+      "label": "Expiry",
+      "fields": [
+        { "key": "oxxo_expiry_days", "label": "OXXO expiry (days)", "component": "input", "inputType": "number" },
+        { "key": "spei_expiry_days", "label": "SPEI expiry (days)", "component": "input", "inputType": "number" }
+      ]
+    }
+  ]
+}
