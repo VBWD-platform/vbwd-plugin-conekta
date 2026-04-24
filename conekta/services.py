@@ -58,14 +58,11 @@ class ConektaService:
         self, invoice_no: str, provider_payload: Dict[str, Any]
     ) -> ConektaOrder:
         order = self._get_or_create(invoice_no)
-        provider_status = provider_payload.get("payment_status") or provider_payload.get(
-            "status", ""
-        )
+        provider_status = provider_payload.get(
+            "payment_status"
+        ) or provider_payload.get("status", "")
         new_status = map_conekta_status(provider_status)
-        if (
-            order.status == new_status
-            and order.last_provider_status == provider_status
-        ):
+        if order.status == new_status and order.last_provider_status == provider_status:
             return order
         order.status = new_status
         order.last_provider_status = provider_status
@@ -102,7 +99,5 @@ class ConektaWebhookHandler:
             else None
         )
         if not invoice_no:
-            raise ValueError(
-                "missing metadata.invoice_no in Conekta webhook"
-            )
+            raise ValueError("missing metadata.invoice_no in Conekta webhook")
         return self._service.apply_provider_update(invoice_no, order_obj)

@@ -97,9 +97,7 @@ class ConektaPlugin(PaymentProviderPlugin):
                 sandbox=config.get("sandbox", True),
             ),
             public_key=config.get(f"{prefix}public_key", ""),
-            api_url=config.get(
-                f"{prefix}api_url", DEFAULT_CONFIG[f"{prefix}api_url"]
-            ),
+            api_url=config.get(f"{prefix}api_url", DEFAULT_CONFIG[f"{prefix}api_url"]),
             api_version=config.get("api_version", DEFAULT_CONFIG["api_version"]),
         )
 
@@ -164,9 +162,7 @@ class ConektaPlugin(PaymentProviderPlugin):
                 error_message=response.error,
                 status=PaymentStatus.FAILED,
             )
-        status = _map_conekta_status(
-            response.data.get("payment_status", "")
-        )
+        status = _map_conekta_status(response.data.get("payment_status", ""))
         return PaymentResult(
             success=status == PaymentStatus.COMPLETED,
             transaction_id=payment_id,
@@ -178,8 +174,7 @@ class ConektaPlugin(PaymentProviderPlugin):
             success=False,
             status=PaymentStatus.FAILED,
             error_message=(
-                "Conekta does not expose authorization release via the "
-                "Orders API"
+                "Conekta does not expose authorization release via the " "Orders API"
             ),
         )
 
@@ -192,9 +187,7 @@ class ConektaPlugin(PaymentProviderPlugin):
         self, transaction_id: str, amount: Optional[Decimal] = None
     ) -> PaymentResult:
         adapter = self._get_adapter()
-        response = adapter.refund_order(
-            order_id=transaction_id, amount=amount
-        )
+        response = adapter.refund_order(order_id=transaction_id, amount=amount)
         if not response.success:
             return PaymentResult(
                 success=False,

@@ -115,9 +115,7 @@ class ConektaSDKAdapter(BaseSDKAdapter):
         charge: Dict[str, Any] = {"amount": _to_cents(amount)}
         if method == "card":
             if not token_id:
-                return SDKResponse(
-                    success=False, error="card method requires token_id"
-                )
+                return SDKResponse(success=False, error="card method requires token_id")
             charge["payment_method"] = {"type": "default", "token_id": token_id}
             if msi and msi > 1:
                 charge["payment_method"]["monthly_installments"] = msi
@@ -160,9 +158,7 @@ class ConektaSDKAdapter(BaseSDKAdapter):
         if not signature:
             return False
         expected = base64.b64encode(
-            hmac.new(
-                self._private_key.encode(), payload, hashlib.sha256
-            ).digest()
+            hmac.new(self._private_key.encode(), payload, hashlib.sha256).digest()
         ).decode()
         return hmac.compare_digest(expected, signature)
 
@@ -200,9 +196,7 @@ class ConektaSDKAdapter(BaseSDKAdapter):
         try:
             body = resp.json()
         except ValueError:
-            return SDKResponse(
-                success=False, error="invalid JSON from Conekta"
-            )
+            return SDKResponse(success=False, error="invalid JSON from Conekta")
         if resp.status_code >= 400:
             details = body.get("details")
             msg = body.get("message", f"HTTP {resp.status_code}")

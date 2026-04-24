@@ -33,7 +33,9 @@ class TestStatusMap:
 class TestConektaService:
     def test_record_order_created(self):
         session = MagicMock()
-        session.query.return_value.filter_by.return_value.one_or_none.return_value = None
+        session.query.return_value.filter_by.return_value.one_or_none.return_value = (
+            None
+        )
         svc = ConektaService(session=session)
 
         order = svc.record_order_created(
@@ -54,7 +56,9 @@ class TestConektaService:
         existing.status = "completed"
         existing.last_provider_status = "paid"
         session = MagicMock()
-        session.query.return_value.filter_by.return_value.one_or_none.return_value = existing
+        session.query.return_value.filter_by.return_value.one_or_none.return_value = (
+            existing
+        )
         svc = ConektaService(session=session)
 
         svc.apply_provider_update("INV-1", {"payment_status": "paid"})

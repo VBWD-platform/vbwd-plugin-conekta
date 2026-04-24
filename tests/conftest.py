@@ -18,9 +18,7 @@ def conekta_config() -> dict:
 
 @pytest.fixture
 def sdk_config(conekta_config) -> SDKConfig:
-    return SDKConfig(
-        api_key=conekta_config["test_private_key"], sandbox=True
-    )
+    return SDKConfig(api_key=conekta_config["test_private_key"], sandbox=True)
 
 
 @pytest.fixture

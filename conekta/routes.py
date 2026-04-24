@@ -66,9 +66,7 @@ def create_order():
     expires_dt = None
     if expires_at_ts:
         try:
-            expires_dt = datetime.fromtimestamp(
-                int(expires_at_ts), tz=timezone.utc
-            )
+            expires_dt = datetime.fromtimestamp(int(expires_at_ts), tz=timezone.utc)
         except (TypeError, ValueError):
             expires_dt = None
 
