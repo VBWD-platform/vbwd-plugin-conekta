@@ -44,7 +44,7 @@ class ConektaPlugin(PaymentProviderPlugin):
     def metadata(self) -> PluginMetadata:
         return PluginMetadata(
             name="conekta",
-            version="1.0.0",
+            version="26.6",
             author="VBWD Team",
             description=(
                 "Conekta (Mexico) — cards with MSI, OXXO cash vouchers, "
