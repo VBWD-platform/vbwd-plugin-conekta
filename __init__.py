@@ -3,7 +3,7 @@ from typing import Optional, Dict, Any, TYPE_CHECKING
 from decimal import Decimal
 from uuid import UUID
 
-from vbwd.plugins.base import PluginMetadata
+from vbwd.plugins.base import PluginMetadata, PublicRouteDeclaration
 from vbwd.plugins.payment_provider import (
     PaymentProviderPlugin,
     PaymentResult,
@@ -58,6 +58,14 @@ class ConektaPlugin(PaymentProviderPlugin):
         if config:
             merged.update(config)
         super().initialize(merged)
+
+    def declare_public_routes(self) -> PublicRouteDeclaration:
+        """Public Conekta provider webhook (verified by provider signature)."""
+        return PublicRouteDeclaration(
+            mutation={
+                "/api/v1/plugins/conekta/webhooks": "Conekta webhook; verified by provider signature in-handler.",
+            },
+        )
 
     def get_blueprint(self) -> Optional["Blueprint"]:
         from plugins.conekta.conekta.routes import conekta_plugin_bp
